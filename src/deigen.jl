@@ -33,7 +33,7 @@ function get_order(s::DEigenSystem, inds)
   end
 end
 
-_get_order_impl(s::DEigen, i::Int) = (s.values_list[:,i+1], s.vectors_list[:,:,i+1])
+_get_order_impl(s::DEigenSystem, i::Int) = (s.values_list[:,i+1], s.vectors_list[:,:,i+1])
 
 function _get_order_impl(s::DEigenSystem, inds::AbstractVector{<:Integer})
   shifted_inds = inds .+ 1
