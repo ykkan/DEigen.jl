@@ -25,7 +25,7 @@ function (s::DEigenSystem)(inds)
   get_order(s, inds)
 end
 
-function get_order(s::DEigenSyetem, inds)
+function get_order(s::DEigenSystem, inds)
   if all(0 .<= inds .<= order(s))
     return _get_order_impl(s, inds)
   else
