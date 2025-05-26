@@ -1,12 +1,12 @@
 export deigen
 export order
 
-struct DEigen{T,N}
+struct DEigenSystem{T,N}
   values_list::Matrix{T}
   vectors_list::Array{T,3}
 end
 
-function Base.show(io::IO, mime::MIME{Symbol("text/plain")}, s::DEigen{T,N}) where {T,N}
+function Base.show(io::IO, mime::MIME{Symbol("text/plain")}, s::DEigenSystem{T,N}) where {T,N}
   summary(io,s); println(io)
   println(io, "values_list:")
   show(io, mime, s.values_list)
@@ -15,17 +15,17 @@ function Base.show(io::IO, mime::MIME{Symbol("text/plain")}, s::DEigen{T,N}) whe
 end
 
 # iteration for upacking into a tuple of variables
-Base.iterate(s::DEigen) = (s.values_list, Val(:vectors_list))
-Base.iterate(s::DEigen, ::Val{:vectors_list}) = (s.vectors_list, Val(:done))
-Base.iterate(s::DEigen, ::Val{:done}) = nothing
+Base.iterate(s::DEigenSystem) = (s.values_list, Val(:vectors_list))
+Base.iterate(s::DEigenSystem, ::Val{:vectors_list}) = (s.vectors_list, Val(:done))
+Base.iterate(s::DEigenSystem, ::Val{:done}) = nothing
 
-order(s::DEigen{T,N}) where {T,N} = N
+order(s::DEigenSystem{T,N}) where {T,N} = N
 
-function (s::DEigen)(inds)
+function (s::DEigenSystem)(inds)
   get_order(s, inds)
 end
 
-function get_order(s::DEigen, inds)
+function get_order(s::DEigenSyetem, inds)
   if all(0 .<= inds .<= order(s))
     return _get_order_impl(s, inds)
   else
@@ -35,12 +35,12 @@ end
 
 _get_order_impl(s::DEigen, i::Int) = (s.values_list[:,i+1], s.vectors_list[:,:,i+1])
 
-function _get_order_impl(s::DEigen, inds::AbstractVector{<:Integer})
+function _get_order_impl(s::DEigenSystem, inds::AbstractVector{<:Integer})
   shifted_inds = inds .+ 1
   return (s.values_list[:,shifted_inds], s.vectors_list[:,:,shifted_inds])
 end
 
-function _get_order_impl(s::DEigen, r::StepRange)
+function _get_order_impl(s::DEigenSystem, r::StepRange)
   shifted_r = (first(r)+1):step(r):(stop(r)+1)
   return (s.values_list[:,shifted_r], s.vectors_list[:,:,shifted_r])
 end
@@ -97,5 +97,5 @@ function deigen(vals0::Vector{T}, vecs0::Matrix{T}, A_list::NTuple{N,Matrix{T}})
       vecs_list[:,i,k+1] .= x[2:end]
     end
   end
-  return DEigen{T,N-1}(vals_list, vecs_list)
+  return DEigenSystem{T,N-1}(vals_list, vecs_list)
 end
