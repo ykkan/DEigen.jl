@@ -1,5 +1,6 @@
 module DEigen
 
-# Write your package code here.
+using LinearAlgebra
+include("deigen.jl")
 
 end
