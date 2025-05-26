@@ -1,0 +1,13 @@
+name = "DEigen"
+uuid = "c69e0ee2-d60a-4b84-b0d9-b230c439b7c5"
+authors = ["Yi-Kai Kan"]
+version = "1.0.0-DEV"
+
+[compat]
+julia = "1.6.7"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
