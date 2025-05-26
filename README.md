@@ -45,7 +45,7 @@ A1 = [1.0 0.0;
 A2 = [0.0 0.0;
       0.0 0.0]
 
-values_list, vectors_list = deign(A0, A1, A2)
+values_list, vectors_list = deigen(A0, A1, A2)
 
 #=
 DEigen{Float64, 2}
@@ -127,7 +127,7 @@ values0, vectors0 = eigen(A0)
 # the indicies for the selected eigenvalues and eigenvectors
 selected_ind = 1
 
-values_list, vectors_list = deign(values0[selected_ind], vectors0[:,selected_ind], A0, A1, A2)
+values_list, vectors_list = deigen(values0[selected_ind], vectors0[:,selected_ind], A0, A1, A2)
 
 #=
 DEigen{Float64, 2}
