@@ -1,7 +1,7 @@
 # DEigen.jl
 [![Build Status](https://github.com/ykkan/DEigen.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/ykkan/DEigen.jl/actions/workflows/CI.yml?query=branch%3Amain)
 
-This package computes the derivatives of a parametric eigenvalue problem with respect to a single scalar variable.
+This package computes derivatives of arbitrary order for a parametric eigenvalue problem with respect to a single scalar variable.
 
 ## Description
 Consider a parametric square matrix $A(x)$ that depends on a single scalar variable $x$ and its associated eigenvalue problem:
@@ -15,11 +15,11 @@ then the derivatives of the eigenvalue $[\lambda^{(k)}(x_0) \mid k=1\ldots K]$ a
 The package can be installed using Julia's REPL
 ```julia
 julia> import Pkg
-julia> Pkg.add(url="https://github.com/ykkan//DEigen.jl.git")
+julia> Pkg.add(url="https://github.com/ykkan/DEigen.jl.git")
 ```
 or with Pkg mode (hitting `]` in the command prompt)
 ```julia
-pkg> add https://github.com/ykkan//DEigen.jl.git
+pkg> add https://github.com/ykkan/DEigen.jl.git
 ```
 
 ## Usage
@@ -81,14 +81,14 @@ The variable `values_list` stores all $K$ derivatives of all $M$ eigenvalues in 
 ```
 and the variable `vectors_list` stores all $K$ derivatives of all $M$ eigenvectors in a $M\times M\times (K+1)$ array
 ```math
-\overset{ \text{vectors\_list[:, :, 1]} }{
+\overset{ \text{vectors_list[:, :, 1]} }{
   \begin{bmatrix}
   \vert & \vert &        & \vert \\
   v^{(0)}_1   & v^{(0)}_2   & \cdots & v^{(0)}_M   \\
   \vert & \vert &        & \vert
   \end{bmatrix}
 },\,
-\overset{ \text{vectors\_list[:, :, 2]} }{
+\overset{ \text{vectors_list[:, :, 2]} }{
 \begin{bmatrix}
   \vert & \vert &        & \vert \\
   v^{(1)}_1   & v^{(1)}_2   & \cdots & v^{(1)}_M   \\
@@ -98,7 +98,7 @@ and the variable `vectors_list` stores all $K$ derivatives of all $M$ eigenvecto
 ,
 \ldots
 ,\,
-\overset{ \text{vectors\_list[:, :, K+1]} }{
+\overset{ \text{vectors_list[:, :, K+1]} }{
   \begin{bmatrix}
   \vert & \vert &        & \vert \\
   v^{(K)}_1   & v^{(K)}_2   & \cdots & v^{(K)}_M   \\
@@ -162,14 +162,14 @@ The variable `values_list` stores all $K$ derivatives of selected $P$ eigenvalue
 ```
 and the variable `vectors_list` stores all $K$ derivatives of selected $P$ eigenvectors in a $M\times P\times (K+1)$ array
 ```math
-\overset{ \text{vectors\_list[:, :, 1]} }{
+\overset{ \text{vectors_list[:, :, 1]} }{
   \begin{bmatrix}
   \vert & \vert &        & \vert \\
   v^{(0)}_{i_1}   & v^{(0)}_{i_2}   & \cdots & v^{(0)}_{i_P}   \\
   \vert & \vert &        & \vert
   \end{bmatrix}
 },\,
-\overset{ \text{vectors\_list[:, :, 2]} }{
+\overset{ \text{vectors_list[:, :, 2]} }{
 \begin{bmatrix}
   \vert & \vert &        & \vert \\
   v^{(1)}_{i_1}   & v^{(1)}_{i_2}   & \cdots & v^{(1)}_{i_P}   \\
@@ -179,7 +179,7 @@ and the variable `vectors_list` stores all $K$ derivatives of selected $P$ eigen
 ,
 \ldots
 ,\,
-\overset{ \text{vectors\_list[:, :, K+1]} }{
+\overset{ \text{vectors_list[:, :, K+1]} }{
   \begin{bmatrix}
   \vert & \vert &        & \vert \\
   v^{(K)}_{i_1}   & v^{(K)}_{i_2}   & \cdots & v^{(K)}_{i_P}   \\
